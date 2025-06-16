@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Submission Form</title>
+</head>
+<body>
+    <h1>New Project Submission</h1>
+
+    <form action="/save" method="post" th:object="${employee}">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" th:field="*{name}" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" th:field="*{email}" required><br><br>
+
+        <label for="projectManager">Project Manager:</label><br>
+        <input type="text" id="projectManager" name="projectManager" th:field="*{projectManager}" required><br><br>
+
+        <label for="managerEmail">Manager Email:</label><br>
+        <input type="email" id="managerEmail" name="managerEmail" th:field="*{managerEmail}" required><br><br>
+
+        <label for="startDate">Project Start Date:</label><br>
+        <input type="date" id="startDate" name="startDate" th:field="*{startDate}" required><br><br>
+
+        <label for="endDate">Project End Date:</label><br>
+        <input type="date" id="endDate" name="endDate" th:field="*{endDate}"><br><br>
+
+        <input type="submit" value="Submit Project">
+        <input type="reset" value="Reset Form">
+    </form>
+</body>
+</html>
