@@ -13,10 +13,10 @@
 
 	<groupId>com.EmployeeRating</groupId>
 	<artifactId>EmployeeRating</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+
 	<packaging>war</packaging>
 
-	<name>EmployeeRating</name>
+	<name>employee</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -72,7 +72,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.32</version> <!-- ✅ Always specify version -->
+			<version>1.18.32</version><!--$NO-MVN-MAN-VER$--> <!-- ✅ Always specify version -->
 			<scope>provided</scope>   <!-- ✅ Better than optional:true -->
 		</dependency>
 
@@ -85,6 +85,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>employee</finalName>
 		<plugins>
 			<!-- Compiler plugin (Java 17) -->
 			<plugin>
@@ -98,8 +99,7 @@
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-							<version>1.18.32</version> <!-- ✅ version must be
-							added here -->
+							<version>1.18.32</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
@@ -130,6 +130,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

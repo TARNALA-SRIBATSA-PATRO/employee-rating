@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<weblogic-web-app
-	xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://xmlns.oracle.com/weblogic/weblogic-web-app
-                        http://xmlns.oracle.com/weblogic/weblogic-web-app/1.4/weblogic-web-app.xsd">
-
-	<context-root>/employee</context-root>
-
-	<container-descriptor>
-		<prefer-application-packages>
-			<package-name>org.springframework.*</package-name>
-		</prefer-application-packages>
-
-
-	</container-descriptor>
-
-</weblogic-web-app>
+<wls:weblogic-web-app
+    xmlns:wls="http://xmlns.oracle.com/weblogic/weblogic-web-app"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.oracle.com/weblogic/weblogic-web-app
+        http://xmlns.oracle.com/weblogic/weblogic-web-app/1.4/weblogic-web-app.xsd">
+ 
+    <wls:context-root>/employee</wls:context-root>
+ 
+    <wls:container-descriptor>
+        <wls:prefer-application-packages>
+        	<wls:package-name>org.slf4j.*</wls:package-name>
+            <wls:package-name>org.springframework.*</wls:package-name>
+            <wls:package-name>com.fasterxml.jackson.*</wls:package-name>
+            <wls:package-name>org.apache.xmlbeans.*</wls:package-name>
+            <wls:package-name>schemaorg_apache_xmlbeans.*</wls:package-name>
+            <wls:package-name>org.apache.poi.*</wls:package-name>
+            <wls:package-name>org.openxmlformats.*</wls:package-name>
+        </wls:prefer-application-packages>
+        <wls:prefer-application-resources>
+            <wls:resource-name>META-INF/services/org.apache.xmlbeans.XmlObject</wls:resource-name>
+            <wls:resource-name>META-INF/services/org.apache.xmlbeans.XmlBeans</wls:resource-name>
+            <wls:resource-name>schemaorg_apache_xmlbeans/system/</wls:resource-name>
+        </wls:prefer-application-resources>
+    </wls:container-descriptor>
+ 
+</wls:weblogic-web-app>
+ 
+ 

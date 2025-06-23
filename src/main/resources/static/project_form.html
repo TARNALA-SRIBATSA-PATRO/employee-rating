@@ -1,34 +1,65 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Submission Form</title>
+  <title>Employee Entry Form</title>
 </head>
 <body>
-    <h1>New Project Submission</h1>
+  <h2>Employee Form</h2>
 
-    <form action="/save" method="post" th:object="${employee}">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" th:field="*{name}" required><br><br>
+  <form id="employeeForm">
+    <label>Name:</label>
+    <input type="text" id="name" required><br><br>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" th:field="*{email}" required><br><br>
+    <label>Email:</label>
+    <input type="email" id="email" required><br><br>
 
-        <label for="projectManager">Project Manager:</label><br>
-        <input type="text" id="projectManager" name="projectManager" th:field="*{projectManager}" required><br><br>
+    <label>Project Manager:</label>
+    <input type="text" id="projectManager"><br><br>
 
-        <label for="managerEmail">Manager Email:</label><br>
-        <input type="email" id="managerEmail" name="managerEmail" th:field="*{managerEmail}" required><br><br>
+    <label>Project Manager Email:</label>
+    <input type="email" id="projectManagerEmail"><br><br>
 
-        <label for="startDate">Project Start Date:</label><br>
-        <input type="date" id="startDate" name="startDate" th:field="*{startDate}" required><br><br>
+    <label>Start Date:</label>
+    <input type="date" id="startDate" required><br><br>
 
-        <label for="endDate">Project End Date:</label><br>
-        <input type="date" id="endDate" name="endDate" th:field="*{endDate}"><br><br>
+    <label>End Date:</label>
+    <input type="date" id="endDate" required><br><br>
 
-        <input type="submit" value="Submit Project">
-        <input type="reset" value="Reset Form">
-    </form>
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="response"></p>
+
+  <script>
+    document.getElementById("employeeForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const employee = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        projectManager: document.getElementById("projectManager").value,
+        projectManagerEmail: document.getElementById("projectManagerEmail").value,
+        startDate: document.getElementById("startDate").value,
+        endDate: document.getElementById("endDate").value
+      };
+
+      fetch("http://localhost:8080/api/save", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(employee)
+      })
+      .then(response => response.text())
+      .then(result => {
+        document.getElementById("response").innerText = result;
+console.log(response);
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        document.getElementById("response").innerText = "Error submitting form!";
+      });
+    });
+  </script>
 </body>
 </html>

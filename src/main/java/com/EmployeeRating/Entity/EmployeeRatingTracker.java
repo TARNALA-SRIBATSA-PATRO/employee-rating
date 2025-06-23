@@ -16,25 +16,20 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Employee {
+@AllArgsConstructor
+public class EmployeeRatingTracker {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String name;
-	private String email;
-	private String projectManager;
-	private String projectManagerEmail;
-	private LocalDate startDate;
-	private LocalDate endDate;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="rating_id")
-	private Rating rating;
+	private LocalDate sendDate;
 	
-
-	@OneToOne(mappedBy = "employee",cascade = CascadeType.ALL)
-	EmployeeRatingTracker employeeRatingTracker;
+	private LocalDate submitDate;
+	
+	private Boolean isSubmmited = false; 
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="employee_id")
+	private Employee employee;
 }

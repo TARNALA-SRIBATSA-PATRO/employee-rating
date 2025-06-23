@@ -6,21 +6,25 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
-@SpringBootApplication
-public class EmployeeRatingApplication extends SpringBootServletInitializer{
+@SpringBootApplication(scanBasePackages = "com.EmployeeRating")
+@ComponentScan(basePackages = "com.EmployeeRating") // 👈 this tells Spring to scan all sub-packages
+public class EmployeeRatingApplication extends SpringBootServletInitializer {
 
-	 @Override
-	    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-	        return builder.sources(EmployeeRatingApplication.class);
-	    }
-	public static void main(String[] args) {
-		SpringApplication.run(EmployeeRatingApplication.class, args);
-	}
-	@Bean
-	ModelMapper getMapper() {
-		return new ModelMapper();
-	}
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(EmployeeRatingApplication.class);
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(EmployeeRatingApplication.class, args);
+    }
+
+    @Bean
+    public ModelMapper getMapper() {
+        return new ModelMapper();
+    }
 }

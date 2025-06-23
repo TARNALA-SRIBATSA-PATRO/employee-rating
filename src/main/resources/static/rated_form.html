@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Employee Rating</title>
+</head>
+<body>
+  <h2>Employee Rating Summary</h2>
+
+  <div id="ratingDisplay">
+    <p><strong>Punctuality:</strong> <span id="punctuality"></span></p>
+    <p><strong>Problem Solving:</strong> <span id="problem_solving"></span></p>
+    <p><strong>Teamwork:</strong> <span id="teamwork"></span></p>
+    <p><strong>Leadership:</strong> <span id="leadership"></span></p>
+    <p><strong>Communication:</strong> <span id="communication"></span></p>
+    <p><strong>Average Rating:</strong> <span id="averageRating"></span></p>
+  </div>
+
+  <p id="errorMsg" style="color:red;"></p>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const empId = urlParams.get("empId");
+
+    if (!empId) {
+      document.getElementById("errorMsg").innerText = "No Employee ID provided!";
+    } else {
+      fetch(`http://localhost:8080/rating/getRatring/${empId}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Rating not found");
+          }
+          return response.json();
+        })
+        .then(data => {
+          document.getElementById("punctuality").innerText = data.punctuality;
+          document.getElementById("problem_solving").innerText = data.problem_solving;
+          document.getElementById("teamwork").innerText = data.teamwork;
+          document.getElementById("leadership").innerText = data.leadership;
+          document.getElementById("communication").innerText = data.communication;
+          document.getElementById("averageRating").innerText = data.averageRating;
+        })
+        .catch(error => {
+          document.getElementById("errorMsg").innerText = "Error: " + error.message;
+        });
+    }
+  </script>
+</body>
+</html>
