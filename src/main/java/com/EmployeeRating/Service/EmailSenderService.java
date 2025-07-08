@@ -1,9 +1,11 @@
 package com.EmployeeRating.Service;
 
-import com.EmployeeRating.Model.FileAttachmentModel;
+import org.springframework.stereotype.Service;
 
+import com.EmployeeRating.Model.FileAttachmentModel;
+@Service
 public interface EmailSenderService {
 
-	void sendEmail(String toEmail, String subject,String body);
+	void sendEmail(FileAttachmentModel model);
 	void sendEmailWithAttachment(FileAttachmentModel model);
 }

@@ -10,11 +10,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeDto {
+	
 	private Long id;
-	private String name;
-	private String email;
+	private String employeeId;
+	private String employeeName;
+	private String employeeEmail;
 	private String projectManager;
 	private String projectManagerEmail;
+	private boolean pmSubmitted;
 	private LocalDate startDate;
 	private LocalDate endDate;
+	private String teamLead;
+	private String teamLeadEmail;
+	private boolean isTLSubmitted;
+	private boolean isHrSend;
+	private String pmoName;
+	private String pmoEmail;
+	private boolean isPmoSubmitted;
+	private LocalDate joiningDate;
+	private LocalDate leaveDate;
 }

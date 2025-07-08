@@ -20,13 +20,15 @@ public class Rating {
 	
 	private Long punctuality;
 	
-	private Long problem_solving;
+	private Long task_allocation;
 	
 	private Long teamwork;
 	
-	private Long leadership;
+	private Long adaptability;
 	
 	private Long communication;
+	
+	private Long quantity_and_quality;
 	
 	private Float averageRating;
 }

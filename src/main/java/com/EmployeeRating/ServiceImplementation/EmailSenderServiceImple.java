@@ -1,11 +1,9 @@
 package com.EmployeeRating.ServiceImplementation;
 
-import java.io.File;
-
 import javax.mail.internet.MimeMessage;
+import javax.mail.util.ByteArrayDataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -19,36 +17,35 @@ public class EmailSenderServiceImple implements EmailSenderService{
 	@Autowired
 	JavaMailSender mailSender;
 	@Override
-	public void sendEmail(String toEmail, String subject,String body) {
+	public void sendEmail(FileAttachmentModel model) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom("amareshparida20@gmail.com");
-		message.setTo(toEmail);
-		message.setSubject(subject);
-		message.setText(body);
+		message.setTo(model.getToEmail());
+		message.setSubject(model.getSubject());
+		message.setText(model.getBody());
 		mailSender.send(message);
 	}
 	@Override
 	public void sendEmailWithAttachment(FileAttachmentModel model) {
-		MimeMessage message = mailSender.createMimeMessage();
-		MimeMessageHelper helper;
-		try {
-			helper = new MimeMessageHelper(message,true);
-			helper.setFrom("amareshparida20@gmail.com");
-			helper.setTo(model.getToEmail());
-			helper.setSubject(model.getSubject());
-			helper.setText(model.getBody());
-			
-			 FileSystemResource file
-             = new FileSystemResource(
-                 new File(model.getAttachments()));
+	    MimeMessage message = mailSender.createMimeMessage();
+	    try {
+	        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+	        helper.setFrom("amareshparida20@gmail.com");
+	        helper.setTo("amareshparida10@gmail.com");
+	        helper.setSubject(model.getSubject());
+	        helper.setText(model.getBody());
 
-         helper.addAttachment(
-             file.getFilename(), file);
-         mailSender.send(message);
-		}catch (Exception e) {
-			
-		}
+	        if (model.getAttachments() != null) {
+	            ByteArrayDataSource dataSource = new ByteArrayDataSource(model.getAttachments(), "application/pdf");
+	            helper.addAttachment("Rating.pdf", dataSource);
+	        }
+
+	        mailSender.send(message);
+	    } catch (Exception e) {
+	        e.printStackTrace(); 
+	    }
 	}
+
 	
 
 }

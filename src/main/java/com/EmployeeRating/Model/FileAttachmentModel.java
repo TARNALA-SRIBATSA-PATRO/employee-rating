@@ -11,5 +11,11 @@ public class FileAttachmentModel {
 	private String toEmail;
 	private String body;
 	private String subject;
-	private String attachments;
+	private byte[] attachments;
+	public FileAttachmentModel(String toEmail, String body, String subject) {
+        this.toEmail = toEmail;
+        this.body = body;
+        this.subject = subject;
+        this.attachments=null;
+    }
 }

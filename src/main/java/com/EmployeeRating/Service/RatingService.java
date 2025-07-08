@@ -7,7 +7,7 @@ import com.EmployeeRating.Entity.Rating;
 
 public interface RatingService {
 
-	ResponseEntity<?> save(RatingDto dto,Long id);
+	ResponseEntity<?> save(RatingDto dto,String empid);
 
 	Rating getRating(Long id);
 
