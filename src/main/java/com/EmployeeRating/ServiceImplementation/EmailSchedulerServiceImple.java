@@ -170,7 +170,7 @@ public class EmailSchedulerServiceImple implements EmailSchedulerService {
 
 				String form = "project_from.html";
 				byte[] attachments = PdfGenerator.generatePdf(employee);
-				String message = "Dear HR please find the details of employee " + employee.getEmployeeName();
+				String message = "Dear HR please find the details of employee ...." + employee.getEmployeeName();
 				FileAttachmentModel model = new FileAttachmentModel("amareshparida10@gmail.com", form, message,
 						attachments);
 				emailSenderService.sendEmailWithAttachment(model);
