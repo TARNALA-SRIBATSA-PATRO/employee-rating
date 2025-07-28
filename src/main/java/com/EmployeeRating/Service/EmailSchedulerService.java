@@ -4,7 +4,7 @@ public interface EmailSchedulerService {
 	void sendEmailParticular();
 	void sendEmailDataToEmployee();
 	void sendEmailDataToEmployeeb();
-	void SendEmialToProjectManager();
+	void SendEmailToProjectManager();
 	void sendEmailToPmo();
 	void sendRatingPdfToHr();
 }

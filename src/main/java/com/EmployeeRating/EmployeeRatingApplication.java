@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication(scanBasePackages = "com.EmployeeRating")
-@ComponentScan(basePackages = "com.EmployeeRating") // 👈 this tells Spring to scan all sub-packages
+@ComponentScan(basePackages = "com.EmployeeRating") 
 public class EmployeeRatingApplication extends SpringBootServletInitializer {
 
     @Override

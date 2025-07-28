@@ -8,7 +8,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RatingDto {
+	
 	private Long id;
+		
+	private String employeeId;
 	
 	private Long punctuality;
 	

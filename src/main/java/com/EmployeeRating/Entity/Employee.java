@@ -37,10 +37,12 @@ public class Employee {
 	private String employeeEmail;
 	
 	@Column(nullable = false)
-	private String projectManager;
+	private String projectManagerName;
 	
 	@Column(nullable = false)	
 	private String projectManagerEmail;
+	
+	private String projectName;
 	
 	private boolean pmSubmitted;
 		
@@ -61,6 +63,8 @@ public class Employee {
 	private String pmoName;
 	
 	private String pmoEmail;
+	
+	private String designation;
 	
 	private boolean isPmoSubmitted;
 	

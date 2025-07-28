@@ -17,6 +17,7 @@ public class EmployeeDto {
 	private String employeeEmail;
 	private String projectManager;
 	private String projectManagerEmail;
+	private String projectName;
 	private boolean pmSubmitted;
 	private LocalDate startDate;
 	private LocalDate endDate;

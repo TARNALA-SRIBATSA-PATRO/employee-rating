@@ -1,5 +1,7 @@
 package com.EmployeeRating.Service;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 
 import com.EmployeeRating.Dto.RatingDto;
@@ -11,4 +13,10 @@ public interface RatingService {
 
 	Rating getRating(Long id);
 
+	ResponseEntity<?> update(RatingDto dto, String employeeId);
+
+	ResponseEntity<?> update(List<RatingDto> dtoList);
+
+    ResponseEntity<?> getRatingsByEmployeeIds(List<String> employeeIds);
+    ResponseEntity<?> bulkSaveRatings(List<RatingDto> dtos);
 }

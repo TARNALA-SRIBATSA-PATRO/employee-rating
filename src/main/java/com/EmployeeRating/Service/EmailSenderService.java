@@ -7,5 +7,6 @@ import com.EmployeeRating.Model.FileAttachmentModel;
 public interface EmailSenderService {
 
 	void sendEmail(FileAttachmentModel model);
-	void sendEmailWithAttachment(FileAttachmentModel model);
+	void sendEmailWithAttachmentToTl(FileAttachmentModel model);
+	void sendEmailWithAttachementToPm(FileAttachmentModel model);
 }
