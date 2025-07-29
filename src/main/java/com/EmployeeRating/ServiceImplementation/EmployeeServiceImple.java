@@ -174,6 +174,8 @@ public class EmployeeServiceImple implements EmployeeService {
 	        employee.setEmployeeEmail(individual.getEmployeeEmail());
 	        employee.setJoiningDate(individual.getJoiningDate());
 	        employee.setDesignation(individual.getDesignation());
+			employee.setDepartment(individual.getDepartment());
+			employee.setEmploymentType(individual.getEmploymentType());
 
 	        // Set common fields
 	        employee.setProjectName(formData.getProjectName());

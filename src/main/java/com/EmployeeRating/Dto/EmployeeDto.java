@@ -27,6 +27,9 @@ public class EmployeeDto {
 	private boolean isHrSend;
 	private String pmoName;
 	private String pmoEmail;
+	private String designation;
+	private String department;
+	private String employmentType;
 	private boolean isPmoSubmitted;
 	private LocalDate joiningDate;
 	private LocalDate leaveDate;

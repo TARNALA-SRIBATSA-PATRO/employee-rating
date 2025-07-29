@@ -14,6 +14,8 @@ public class IndividualData {
 	private String employeeId;
 	private String employeeName;
 	private String employeeEmail;
+	private String department;
+	private String employmentType;
 	private LocalDate joiningDate;
 	private String designation;
 
