@@ -39,8 +39,8 @@ public class EmailSchedulerServiceImple implements EmailSchedulerService {
 		ClassPathResource resource = new ClassPathResource("static/" + filename);
 		return new String(Files.readAllBytes(resource.getFile().toPath()), StandardCharsets.UTF_8);
 	}
-//	 @Scheduled(cron = "0 0 11 25 * ?") Have to change
-	@Scheduled(cron = "0 * * * * ?")
+	 @Scheduled(cron = "0 0 11 25 * ?")
+	// @Scheduled(cron = "0 * * * * ?")
 	@Override
 	public void sendEmailParticular() {
 		FileAttachmentModel model = new FileAttachmentModel();
@@ -136,8 +136,8 @@ public class EmailSchedulerServiceImple implements EmailSchedulerService {
 
 	}
 
-//	 @Scheduled(cron = "0 0 11 25 * ?") Have to change
-	@Scheduled(cron = "0 * * * * ?")
+	 @Scheduled(cron = "0 0 11 25 * ?")
+	// @Scheduled(cron = "0 * * * * ?")
 	@Override
 	public void SendEmailToProjectManager() {
 		FileAttachmentModel model = new FileAttachmentModel();
