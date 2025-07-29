@@ -183,8 +183,9 @@ public class ExcelGenerator {
 				// Add formula for average (columns C to H, i.e., 2 to 7)
 				String avgFormula = String.format("AVERAGE(C%d:H%d)", i + 2, i + 2);
 				row.createCell(8).setCellFormula(avgFormula);
-				// Add formula for score (column J, i.e., 9): (Average/5)*100
-				String scoreFormula = String.format("(I%d/5)*100", i + 2);
+				// Add formula for score (column J, i.e., 9): Custom scoring based on average rating
+				// 1-2 rating → 0% score, 3 rating → 50% score, 4-5 rating → 100% score
+				String scoreFormula = String.format("IF(I%d<=2,0,IF(I%d=3,50,100))", i + 2, i + 2);
 				row.createCell(9).setCellFormula(scoreFormula);
 			} else {
 				for (int j = 2; j <= 7; j++) {
@@ -196,18 +197,18 @@ public class ExcelGenerator {
 		}
 		// Conditional formatting for Score column (J)
 		org.apache.poi.ss.usermodel.SheetConditionalFormatting sheetCF = sheet.getSheetConditionalFormatting();
-		// Red: 0-49%
-		org.apache.poi.ss.usermodel.ConditionalFormattingRule ruleRed = sheetCF.createConditionalFormattingRule(org.apache.poi.ss.usermodel.ComparisonOperator.LE, "49");
+		// Red: 0% (ratings 1-2)
+		org.apache.poi.ss.usermodel.ConditionalFormattingRule ruleRed = sheetCF.createConditionalFormattingRule(org.apache.poi.ss.usermodel.ComparisonOperator.EQUAL, "0");
 		org.apache.poi.ss.usermodel.PatternFormatting fillRed = ruleRed.createPatternFormatting();
 		fillRed.setFillBackgroundColor(IndexedColors.RED.getIndex());
 		fillRed.setFillPattern(org.apache.poi.ss.usermodel.PatternFormatting.SOLID_FOREGROUND);
-		// Yellow: 50-79%
-		org.apache.poi.ss.usermodel.ConditionalFormattingRule ruleYellow = sheetCF.createConditionalFormattingRule(org.apache.poi.ss.usermodel.ComparisonOperator.BETWEEN, "50", "79");
+		// Yellow: 50% (rating 3)
+		org.apache.poi.ss.usermodel.ConditionalFormattingRule ruleYellow = sheetCF.createConditionalFormattingRule(org.apache.poi.ss.usermodel.ComparisonOperator.EQUAL, "50");
 		org.apache.poi.ss.usermodel.PatternFormatting fillYellow = ruleYellow.createPatternFormatting();
 		fillYellow.setFillBackgroundColor(IndexedColors.YELLOW.getIndex());
 		fillYellow.setFillPattern(org.apache.poi.ss.usermodel.PatternFormatting.SOLID_FOREGROUND);
-		// Green: 80-100%
-		org.apache.poi.ss.usermodel.ConditionalFormattingRule ruleGreen = sheetCF.createConditionalFormattingRule(org.apache.poi.ss.usermodel.ComparisonOperator.GE, "80");
+		// Green: 100% (ratings 4-5)
+		org.apache.poi.ss.usermodel.ConditionalFormattingRule ruleGreen = sheetCF.createConditionalFormattingRule(org.apache.poi.ss.usermodel.ComparisonOperator.EQUAL, "100");
 		org.apache.poi.ss.usermodel.PatternFormatting fillGreen = ruleGreen.createPatternFormatting();
 		fillGreen.setFillBackgroundColor(IndexedColors.BRIGHT_GREEN.getIndex());
 		fillGreen.setFillPattern(org.apache.poi.ss.usermodel.PatternFormatting.SOLID_FOREGROUND);
