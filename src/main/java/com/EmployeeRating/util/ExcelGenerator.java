@@ -184,8 +184,8 @@ public class ExcelGenerator {
 				String avgFormula = String.format("AVERAGE(C%d:H%d)", i + 2, i + 2);
 				row.createCell(8).setCellFormula(avgFormula);
 				// Add formula for score (column J, i.e., 9): Custom scoring based on average rating
-				// 1-2 rating → 0% score, 3 rating → 50% score, 4-5 rating → 100% score
-				String scoreFormula = String.format("IF(I%d<=2,0,IF(I%d=3,50,100))", i + 2, i + 2);
+				// 1-2.99 rating → 0% score, 3-3.99 rating → 50% score, 4-5 rating → 100% score
+				String scoreFormula = String.format("IF(I%d<3,0,IF(I%d<4,50,100))", i + 2, i + 2);
 				row.createCell(9).setCellFormula(scoreFormula);
 			} else {
 				for (int j = 2; j <= 7; j++) {
